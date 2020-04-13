@@ -5,5 +5,54 @@
     background-color: rgba(255,166,5,0.34);
     display: flex;
     flex-flow: column;
-    box-shadow: inset 0px 0px 8px 2px rgba(255,183,0,0.5);
+    box-shadow: inset 0 0 8px 2px rgba(255,183,0,0.5);
+}
+
+.OrderButton{
+    padding: 5px;
+    background-color: #ff9200;
+    border: 2px solid #ff6917;
+    box-shadow: inset 0 0 8px 2px rgba(255, 116, 19, 0.98);
+    margin: 10px 5px auto;
+    width: 150px;
+    font-weight: bold;
+}
+
+.OrderButton:hover{
+    padding: 5px;
+    background-color: #ffb013;
+    margin: 10px 5px auto;
+}
+
+.OrderButton:active{
+    box-shadow: 0 0 5px 5px rgb(255, 88, 0);
+}
+
+.OrderButton:focus {
+    box-shadow: 0 0 2px 2px rgb(255, 88, 0);
+    border: 2px solid #ff6917;
+}
+
+.OrderButton:disabled, .OrderButton:disabled:hover{
+    background-color: #AC9980;
+    border: 2px solid #7E7365;
+    color: #ccc;
+    cursor: default;
+    box-shadow: inset 0 0 2px 3px rgba(112,112,121,0.7);
+}
+
+.OrderButton:not(:disabled) {
+    animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
