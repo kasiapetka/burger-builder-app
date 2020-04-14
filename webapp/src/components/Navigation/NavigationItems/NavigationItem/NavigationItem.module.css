@@ -15,7 +15,7 @@
 }
 
 .NavigationItem a:active,.NavigationItem a:hover,.NavigationItem a.active{
-   color: rgb(19, 180, 0);
+   color: rgb(0, 255, 190);
 }
 
 @media(min-width: 500px){
