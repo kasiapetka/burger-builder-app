@@ -14,7 +14,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         constructor(props) {
             super(props);
             this.requestInt = axios.interceptors.request.use(request=>{
-                this.state.error=null;
+                this.error=null;
                 return request;
             });
 

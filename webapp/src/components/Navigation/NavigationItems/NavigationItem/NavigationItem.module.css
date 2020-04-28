@@ -14,11 +14,14 @@
     display: block;
 }
 
-.NavigationItem a:active,.NavigationItem a:hover,.NavigationItem a.active{
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active{
    color: rgb(0, 255, 190);
 }
 
 @media(min-width: 500px){
+
     .NavigationItem{
         margin: 0;
         display: flex;
@@ -32,8 +35,10 @@
         padding: 16px 10px;
         border-bottom: 4px solid transparent;
     }
-
-    .NavigationItem a:active,.NavigationItem a:hover,.NavigationItem a.active{
+    .NavigationItem a:hover,
+    .NavigationItem a:active,
+    .NavigationItem a.active{
+        color: rgb(0, 255, 190);
         background-color: rgba(188,77,0,0.9);
         border-bottom: 4px solid rgba(255, 217, 3, 0.83);
     }
