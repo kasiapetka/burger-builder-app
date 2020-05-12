@@ -4,21 +4,30 @@ import classes from './Input.module.css'
 const input = (props) => {
 
     let inputEl = null;
+    const inputClasses = [classes.InputEl];
+
+    if(props.touched && props.invalid && props.shouldValidate){
+        inputClasses.push(classes.Invalid);
+    }
+
     switch (props.elementType) {
         case('input'):
-            inputEl = <input className={classes.InputEl}
+            inputEl = <input className={inputClasses.join(' ')}
                              {...props.elementConfig}
-                             value={props.value}/>;
+                             value={props.value}
+                             onChange={props.changed}/>;
             break;
         case('textarea'):
-            inputEl = <textarea className={classes.InputEl}
+            inputEl = <textarea className={inputClasses.join(' ')}
                                 {...props.elementConfig}
-                                value={props.value}/>;
+                                value={props.value}
+                                onChange={props.changed}/>;
             break;
         case('select'):
-            inputEl = (<select className={classes.InputEl}
-                               value={props.value}>
-                {props.elementConfig.options.map(option=>{
+            inputEl = (<select className={inputClasses.join(' ')}
+                               value={props.value}
+                               onChange={props.changed}>
+                {props.elementConfig.options.map(option => {
                     return <option
                         key={option.value}
                         value={option.value}>
@@ -28,9 +37,10 @@ const input = (props) => {
             </select>);
             break;
         default:
-            inputEl = <input className={classes.InputEl}
+            inputEl = <input className={inputClasses.join(' ')}
                              {...props.elementConfig}
-                             value={props.value}/>;
+                             value={props.value}
+                             onChange={props.changed}/>;
     }
 
     return (
