@@ -1,5 +1,5 @@
 .Button{
-    width: 100px;
+    min-width: 100px;
     display: inline-block;
     margin: 5px 40px;
     cursor: pointer;

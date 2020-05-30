@@ -5,21 +5,21 @@ import Auxiliary from "../Auxiliary";
 const withErrorHandler = (WrappedComponent, axios) => {
     return class extends Component {
 
-        state={
-            requestInt: null,
-            responseInt:null,
-            error:null
-        };
-
         constructor(props) {
             super(props);
-            this.requestInt = axios.interceptors.request.use(request=>{
-                this.error=null;
+            this.state={
+                requestInt: null,
+                responseInt:null,
+                error:null
+            };
+
+            this.requestInt = axios.interceptors.request.use(request => {
+                this.state.error=null;
                 return request;
             });
 
             this.responseInt = axios.interceptors.response.use(response => response, error => {
-                this.error= error;
+                this.state.error= error;
                 return Promise.reject(error)
             })
         }
@@ -29,7 +29,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
             axios.interceptors.request.eject(this.responseInt);
         }
 
-        errorConfirmedHandler=()=>{
+        errorConfirmedHandler = () => {
             this.setState({error: null})
         };
 

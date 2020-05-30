@@ -3,6 +3,7 @@ import Auxiliary from "../../hoc/Auxiliary";
 import classes from "./Layout.module.css"
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
+import {connect} from "react-redux";
 
 class Layout extends Component{
 
@@ -33,8 +34,12 @@ class Layout extends Component{
            </Auxiliary>
        )
    }
-
 }
 
+const mapStateToProps = state =>{
+  return {
+      isAuth: state.auth.token !== null
+  }
+};
 
-export default Layout;
+export default connect(mapStateToProps)(Layout);
