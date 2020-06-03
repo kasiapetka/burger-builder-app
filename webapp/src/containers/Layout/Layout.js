@@ -5,41 +5,43 @@ import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import {connect} from "react-redux";
 
-class Layout extends Component{
+class Layout extends Component {
 
-    state={
-      showSideDrawer: false,
+    state = {
+        showSideDrawer: false,
     };
 
-    sideDrawerToggleHandler=()=>{
-        this.setState((prevState)=>{
+    sideDrawerToggleHandler = () => {
+        this.setState((prevState) => {
             return {
                 showSideDrawer: !this.state.showSideDrawer
             }
         });
     };
 
-   render(){
-       return(
-           <Auxiliary>
-               <Toolbar
-               clicked={this.sideDrawerToggleHandler}/>
-               <SideDrawer
-               clicked={this.sideDrawerToggleHandler}
-               show={this.state.showSideDrawer}/>
+    render() {
+        return (
+            <Auxiliary>
+                <Toolbar
+                    isAuth={this.props.isAuth}
+                    clicked={this.sideDrawerToggleHandler}/>
+                <SideDrawer
+                    isAuth={this.props.isAuth}
+                    clicked={this.sideDrawerToggleHandler}
+                    show={this.state.showSideDrawer}/>
 
-               <main className={classes.Layout}>
-                   {this.props.children}
-               </main>
-           </Auxiliary>
-       )
-   }
+                <main className={classes.Layout}>
+                    {this.props.children}
+                </main>
+            </Auxiliary>
+        )
+    }
 }
 
-const mapStateToProps = state =>{
-  return {
-      isAuth: state.auth.token !== null
-  }
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null
+    }
 };
 
 export default connect(mapStateToProps)(Layout);

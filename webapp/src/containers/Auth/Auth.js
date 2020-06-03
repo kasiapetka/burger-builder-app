@@ -5,6 +5,7 @@ import classes from './Auth.module.css'
 import {connect} from "react-redux";
 import * as actions from '../../store/actions'
 import Spinner from "../../components/UI/Spinner/Spinner";
+import {Redirect} from 'react-router-dom'
 
 class Auth extends Component {
 
@@ -40,6 +41,12 @@ class Auth extends Component {
         },
         isSignUp: true
     };
+
+    componentDidMount() {
+        if(!this.props.building && this.props.authRedirectPath !=='/'){
+            this.props.onSetAuthRedirectPath();
+        }
+    }
 
     handleChange = (event, inputId) => {
         const value = event.target.value;
@@ -136,10 +143,16 @@ class Auth extends Component {
             }}>{msg}</p>
         }
 
+        let authRedirect;
+        if(this.props.isAuth){
+            authRedirect = <Redirect to={this.props.authRedirectPath}/>
+        }
+
         return (
             <div className={classes.LoginForm}>
                 {errorMessage}
                 {form}
+                {authRedirect}
                 <Button onClick={this.switchAuthModeHandler}
                         name='Cancel'>Switch to {secondMode}</Button>
             </div>
@@ -150,13 +163,17 @@ class Auth extends Component {
 const mapStateToProps = state =>{
     return{
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuth: state.auth.token !== null,
+        building: state.ingr.building,
+        authRedirectPath: state.auth.authRedirectPath
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password,isSignUp)),
+        onSetAuthRedirectPath: ()=>dispatch(actions.setAuthRedirectPath('/'))
     }
 };
 

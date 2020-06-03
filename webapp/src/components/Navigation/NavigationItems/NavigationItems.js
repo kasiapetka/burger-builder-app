@@ -9,14 +9,27 @@ const navigationItems = (props) => (
             path='/'
             label='Burger Builder'
         />
-        <NavigationItem
-            path='/orders'
-            label='Orders'
-        />
-        <NavigationItem
-            path='/login'
-            label='Log In'
-        />
+
+        {
+            props.isAuth
+                ?
+                <React.Fragment>
+                    <NavigationItem
+                        path='/orders'
+                        label='Orders'
+                    />
+                    <NavigationItem
+                        path='/logout'
+                        label='Log Out'
+                    />
+                </React.Fragment>
+                :
+                <NavigationItem
+                    path='/login'
+                    label='Log In'
+                />
+        }
+
     </ul>
 
 );
