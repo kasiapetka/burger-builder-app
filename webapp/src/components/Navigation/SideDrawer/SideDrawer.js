@@ -14,12 +14,13 @@ const sideDrawer = (props) => {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
 
+
     return (
         <WithClass classes={classes.SideDrawerElements}>
             <Backdrop
                 show={props.show}
                 clicked={props.clicked}/>
-            <div className={attachedClasses.join(' ')}>
+            <div className={attachedClasses.join(' ')} onClick={props.clicked}>
                 <Logo
                     height='10%'/>
                 <nav style={{marginTop: '30px'}}>
